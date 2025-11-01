@@ -28,7 +28,7 @@ export function createLocalSetStore<T>(
       store[id] = isStoreAction(valueOrAction)
         ? valueOrAction(store[id] ?? defaultValue)
         : valueOrAction;
-      localStorage.setItem(storeId, JSON.stringify(store[id]));
+      localStorage.setItem(`${storeId}/${id}`, JSON.stringify(store[id]));
       notify(id, store[id]);
       return store[id];
     };
