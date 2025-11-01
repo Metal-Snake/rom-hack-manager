@@ -6,6 +6,15 @@ List of additions and changes for every version.
 
 
 --------------------------------------------------------------------------------
+* v2.5.1 - 2025-11-02
+--------------------------------------------------------------------------------
+
+Fixed:
+- Don't erase games (tabs) when creating a new one. This might also fix similar
+  issues concerning other settings.
+- Refresh game settings and hack download info when switching tabs.
+
+--------------------------------------------------------------------------------
 * v2.5.0 - 2025-09-05
 --------------------------------------------------------------------------------
 
