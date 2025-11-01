@@ -45,11 +45,11 @@ function SectionHackDownload({ gameId }: SectionHackDownloadProps) {
   const [gameDownloadData, gameDownloadDataMethods] =
     useGameDownloadData(gameId);
 
-  const hackName = useFormValue(gameDownloadData.name, {
+  const hackName = useFormValue(gameId, gameDownloadData.name, {
     onChange: gameDownloadDataMethods.setName,
     validate: validateName,
   });
-  const hackDownloadUrl = useFormValue(gameDownloadData.downloadUrl, {
+  const hackDownloadUrl = useFormValue(gameId, gameDownloadData.downloadUrl, {
     onChange: gameDownloadDataMethods.setDownloadUrl,
     validate: validateURL,
   });

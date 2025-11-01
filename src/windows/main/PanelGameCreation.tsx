@@ -21,15 +21,15 @@ type PanelGameCreationProps = {
 function PanelGameCreation({ onCreateGame }: PanelGameCreationProps) {
   const [gameCreationData, gameCreationDataMethods] = useGameCreationData();
 
-  const gameName = useFormValue(gameCreationData.name, {
+  const gameName = useFormValue("", gameCreationData.name, {
     onChange: gameCreationDataMethods.setName,
     validate: validateNotEmpty,
   });
-  const gameDirectory = useFormValue(gameCreationData.directory, {
+  const gameDirectory = useFormValue("", gameCreationData.directory, {
     onChange: gameCreationDataMethods.setDirectory,
     validate: validateDirectoryPath,
   });
-  const gameOriginalCopy = useFormValue(gameCreationData.originalCopy, {
+  const gameOriginalCopy = useFormValue("", gameCreationData.originalCopy, {
     onChange: gameCreationDataMethods.setOriginalCopy,
     validate: validateFilePath,
   });

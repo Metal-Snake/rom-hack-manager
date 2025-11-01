@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useLayoutEffect, useState } from "react";
 
 export type FormValueOptions<T> = {
   isDirty?: boolean;
@@ -18,6 +18,7 @@ export type FormValue<T> = {
 };
 
 const useFormValue = <T>(
+  id: string,
   defaultValue: T,
   options: FormValueOptions<T> = {}
 ): FormValue<T> => {
@@ -63,6 +64,12 @@ const useFormValue = <T>(
     setIsPristine(false);
     onBlur?.();
   }, [onBlur]);
+
+  useLayoutEffect(() => {
+    setValue(defaultValue);
+    setError(undefined);
+    setIsPristine(true);
+  }, [id]); // eslint-disable-line react-hooks/exhaustive-deps
 
   useEffect(() => {
     setValue(defaultValue);

@@ -9,8 +9,6 @@ export function createLocalSetStore<T>(
 ): SetStore<T> {
   const { notify, subscribe, unsubscribe } = createObservableSet<T>();
 
-  const store: Record<string, T> = {};
-
   function get(id: string): T {
     try {
       const stringOrNull = localStorage.getItem(`${storeId}/${id}`);
@@ -25,29 +23,30 @@ export function createLocalSetStore<T>(
 
   function set(id: string): StoreUpdater<T> {
     return function (valueOrAction: T | StoreAction<T>): T {
-      store[id] = isStoreAction(valueOrAction)
-        ? valueOrAction(store[id] ?? defaultValue)
+      const store = isStoreAction(valueOrAction)
+        ? valueOrAction(get(id))
         : valueOrAction;
-      localStorage.setItem(`${storeId}/${id}`, JSON.stringify(store[id]));
-      notify(id, store[id]);
-      return store[id];
+      localStorage.setItem(`${storeId}/${id}`, JSON.stringify(store));
+      notify(id, store);
+      return store;
     };
   }
 
   function remove(id: string): void {
     localStorage.removeItem(`${storeId}/${id}`);
-    delete store[id];
   }
 
   function use(id: string): [T, StoreUpdater<T>] {
     const [value, setValue] = useState(() => get(id));
     useLayoutEffect(() => subscribe(id, setValue), [id]);
+    useLayoutEffect(() => setValue(get(id)), [id]);
     return [value, useCallback((...args) => set(id)(...args), [id])];
   }
 
   function useValue(id: string): T {
     const [value, setValue] = useState(() => get(id));
     useLayoutEffect(() => subscribe(id, setValue), [id]);
+    useLayoutEffect(() => setValue(get(id)), [id]);
     return value;
   }
 
