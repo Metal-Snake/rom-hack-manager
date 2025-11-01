@@ -4,6 +4,7 @@ import ReactDOM from "react-dom/client";
 import { ThemeProvider } from "../components/ThemeProvider";
 import { useGlobalSettings } from "../store/global-settings";
 
+// eslint-disable-next-line react-refresh/only-export-components
 function BorderWrapper({ children }: { children: React.ReactNode }) {
   const [globalSettings] = useGlobalSettings();
 

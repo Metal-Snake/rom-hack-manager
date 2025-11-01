@@ -2,6 +2,7 @@ import js from "@eslint/js";
 import globals from "globals";
 import imports from "eslint-plugin-import";
 import react from "eslint-plugin-react";
+import reactRefresh from "eslint-plugin-react-refresh";
 import tseslint from "typescript-eslint";
 
 export default tseslint.config(
@@ -14,10 +15,19 @@ export default tseslint.config(
       globals: globals.browser,
     },
     plugins: {
-      react: react,
-      import: imports,
+      "import": imports,
+      "react": react,
+      "react-refresh": reactRefresh,
     },
     rules: {
+      "@typescript-eslint/no-unused-vars": [
+        "error",
+        {
+          argsIgnorePattern: "^_",
+          varsIgnorePattern: "^_",
+          caughtErrorsIgnorePattern: "^_",
+        },
+      ],
       "import/order": [
         "error",
         {
@@ -30,13 +40,9 @@ export default tseslint.config(
       ],
       "quote-props": ["error", "consistent"],
       "react/jsx-sort-props": ["error"],
-      "@typescript-eslint/no-unused-vars": [
+      "react-refresh/only-export-components": [
         "error",
-        {
-          argsIgnorePattern: "^_",
-          varsIgnorePattern: "^_",
-          caughtErrorsIgnorePattern: "^_",
-        },
+        { allowConstantExport: true },
       ],
       "sort-keys": [
         "error",
