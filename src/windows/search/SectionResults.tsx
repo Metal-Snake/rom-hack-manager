@@ -66,27 +66,27 @@ function SectionResults({ results }: SectionResultsProps) {
     const columns: Column<Hack>[] = [];
     if (options.showNameColumn) columns.push({ header: "Name", key: "name" });
     if (options.showAuthorsColumn)
-      columns.push({ header: "Authors", format: formatAuthors });
+      columns.push({ format: formatAuthors, header: "Authors" });
     if (options.showTypeColumn)
       columns.push({
-        header: "Type",
         format: formatType,
+        header: "Type",
         width: "14em",
       });
     if (options.showDifficultyColumn)
       columns.push({
-        header: "Difficulty",
         format: formatDifficulty,
+        header: "Difficulty",
         width: "14em",
       });
     if (options.showLengthColumn)
-      columns.push({ header: "Length", format: formatLength, width: "9em" });
+      columns.push({ format: formatLength, header: "Length", width: "9em" });
     if (options.showRatingColumn)
-      columns.push({ header: "Rating", format: formatRating, width: "7.5em" });
+      columns.push({ format: formatRating, header: "Rating", width: "7.5em" });
     if (options.showSizeColumn)
-      columns.push({ header: "Size", format: formatSize, width: "9em" });
+      columns.push({ format: formatSize, header: "Size", width: "9em" });
     if (options.showDownloadsColumn)
-      columns.push({ header: "⬇️", format: formatDownloads, width: "7.5em" });
+      columns.push({ format: formatDownloads, header: "⬇️", width: "7.5em" });
     return columns;
   }, [
     results,
@@ -123,8 +123,8 @@ function SectionResults({ results }: SectionResultsProps) {
 
   return (
     <Section
-      title={`Results (${results.hacks.length}${results.hasMore ? "+" : ""})`}
       isDefaultExpanded
+      title={`Results (${results.hacks.length}${results.hasMore ? "+" : ""})`}
     >
       <Flex direction="column" gap={3}>
         {results.hacks.length > 0 ? (

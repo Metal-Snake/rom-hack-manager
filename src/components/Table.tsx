@@ -30,7 +30,7 @@ function Table<T>({
 }: TableProps<T>) {
   return (
     <ChakraTable.ScrollArea>
-      <ChakraTable.Root borderWidth={1} tableLayout="fixed" size="sm">
+      <ChakraTable.Root borderWidth={1} size="sm" tableLayout="fixed">
         {caption && <ChakraTable.Caption>{caption}</ChakraTable.Caption>}
         <ChakraTable.Header>
           <ChakraTable.Row borderBottomWidth={1}>

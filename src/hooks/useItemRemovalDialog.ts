@@ -28,7 +28,7 @@ const useItemRemovalDialog = <T>(
     [skipConfirmation, removeItem]
   );
 
-  return { close, isOpen: !!itemToRemove, closeAndRemove, openOrRemove };
+  return { close, closeAndRemove, isOpen: !!itemToRemove, openOrRemove };
 };
 
 export default useItemRemovalDialog;

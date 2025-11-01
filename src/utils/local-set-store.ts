@@ -57,8 +57,8 @@ export function createLocalSetStore<T>(
 
   return {
     get,
-    set,
     remove,
+    set,
 
     use,
     useSetValue,

@@ -1,5 +1,5 @@
 import z from "zod";
-import { Game, gameSchema, gameStore } from "./game";
+import { Game, gameStore } from "./game";
 import { createLocalStore } from "../utils/local-store";
 import { useCallback } from "react";
 

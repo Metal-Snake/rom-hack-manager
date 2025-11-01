@@ -43,8 +43,8 @@ export function createMemorySetStore<T>(defaultValue: T): SetStore<T> {
 
   return {
     get,
-    set,
     remove,
+    set,
 
     use,
     useSetValue,

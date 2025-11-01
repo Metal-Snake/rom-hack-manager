@@ -18,10 +18,10 @@ function Section({ children, isDefaultExpanded, title }: SectionProps) {
         <Accordion.ItemTrigger
           _hover={{ bgColor: "bg.muted" }}
           borderWidth={0}
-          cursor="pointer"
-          rounded={0}
-          px={0}
           colorPalette="blue"
+          cursor="pointer"
+          px={0}
+          rounded={0}
         >
           <Heading
             flex={1}

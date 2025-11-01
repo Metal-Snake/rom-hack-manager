@@ -80,8 +80,8 @@ function SectionFilters({ isSearching, onSearchHacks }: SectionFiltersProps) {
       game,
       moderated,
       name,
-      orderField,
       orderDirection,
+      orderField,
       types,
     });
   }, [

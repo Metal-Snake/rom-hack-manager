@@ -80,12 +80,12 @@ function TextEditor({
           onBlur={onBlur}
           onChange={handleChange}
           onKeyDown={handleKeyDown}
-          placeholder={placeholder}
           outlineColor={error ? "border.error" : "blue.focusRing"}
-          type={type}
-          value={value}
+          placeholder={placeholder}
           readOnly={isReadOnly}
           size="sm"
+          type={type}
+          value={value}
         />
       </InputGroup>
 

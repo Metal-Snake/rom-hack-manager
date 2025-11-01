@@ -50,7 +50,6 @@ export type SearchResults =
 const SuperMarioWorldResponseSchema = z
   .object({
     current_page: z.number(),
-    last_page: z.number(),
     data: z.array(
       z
         .object({
@@ -59,13 +58,13 @@ const SuperMarioWorldResponseSchema = z
           ),
           download_url: z.string(),
           downloads: z.number(),
-          name: z.string(),
-          rating: z.number(),
           fields: z.object({
             difficulty: z.string(),
             length: z.string(),
             type: z.string(),
           }),
+          name: z.string(),
+          rating: z.number(),
           size: z.number(),
         })
         .transform((value) => ({
@@ -81,6 +80,7 @@ const SuperMarioWorldResponseSchema = z
           type: value.fields.type,
         }))
     ),
+    last_page: z.number(),
   })
   .transform((value) => ({
     hacks: value.data,
@@ -92,7 +92,6 @@ const SuperMarioWorldResponseSchema = z
 const YoshiIslandResponseSchema = z
   .object({
     current_page: z.number(),
-    last_page: z.number(),
     data: z.array(
       z
         .object({
@@ -101,11 +100,9 @@ const YoshiIslandResponseSchema = z
           ),
           download_url: z.string(),
           downloads: z.number(),
+          fields: z.object({ length: z.string() }),
           name: z.string(),
           rating: z.number(),
-          fields: z.object({
-            length: z.string(),
-          }),
           size: z.number(),
         })
         .transform((value) => ({
@@ -121,6 +118,7 @@ const YoshiIslandResponseSchema = z
           type: "",
         }))
     ),
+    last_page: z.number(),
   })
   .transform((value) => ({
     hacks: value.data,

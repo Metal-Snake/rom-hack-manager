@@ -13,10 +13,10 @@ export type AlertProps = {
 function Alert({ description, status, title }: AlertProps) {
   return (
     <ChakraAlert.Root
-      status={status}
       alignItems="flex-start"
       fontSize="sm"
       p={2}
+      status={status}
     >
       <ChakraAlert.Indicator />
       <Flex direction="column">

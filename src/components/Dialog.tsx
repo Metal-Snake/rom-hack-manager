@@ -21,11 +21,11 @@ function Dialog({
 
   return (
     <ChakraDialog.Root
-      open={isOpen}
       initialFocusEl={() => ref.current}
       onOpenChange={(open) => {
         if (!open) onCancel();
       }}
+      open={isOpen}
     >
       <ChakraDialog.Backdrop />
       <Portal>

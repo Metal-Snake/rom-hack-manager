@@ -98,9 +98,9 @@ function SectionHacks({ gameId }: SectionHacksProps) {
         onClick: (hack: Hack) => {
           if (globalSettings.emulatorPath) {
             invoke("open_with_selected_app", {
-              filePath: hack.sfcPath,
-              emulatorPath: globalSettings.emulatorPath,
               emulatorArgs: globalSettings.emulatorArgs,
+              emulatorPath: globalSettings.emulatorPath,
+              filePath: hack.sfcPath,
             });
           } else {
             invoke("open_with_default_app", { path: hack.sfcPath });
@@ -126,7 +126,7 @@ function SectionHacks({ gameId }: SectionHacksProps) {
     const stopWatchingRef: { current: UnlistenFn } = { current: () => {} };
 
     const watchGameDirectory = async () => {
-      if (!!(await validateDirectoryPath(game.directory))) {
+      if (await validateDirectoryPath(game.directory)) {
         setHacks([]);
         return;
       }

@@ -73,13 +73,13 @@ function Tabs({ index, onChange, tabsLeft, tabsRight }: TabsProps) {
 
   return (
     <Flex direction="column">
-      <Flex bgColor="bg.muted" overflow="scroll" css={hideScrollBarCss}>
+      <Flex bgColor="bg.muted" css={hideScrollBarCss} overflow="scroll">
         {tabsLeft.map((tab, tabIndex) => (
           <TabHeader
-            isLast={tabIndex === tabsLeft.length - 1 && tabsRight.length === 0}
             isBeforeSelected={
               tabIndex < tabsLeft.length - 1 && tabIndex === index - 1
             }
+            isLast={tabIndex === tabsLeft.length - 1 && tabsRight.length === 0}
             isSelected={tabIndex === index}
             key={tabIndex}
             onClick={() => onChange(tabIndex)}
@@ -104,8 +104,8 @@ function Tabs({ index, onChange, tabsLeft, tabsRight }: TabsProps) {
 
         {tabsRight.map((tab, tabIndex) => (
           <TabHeader
-            isLast={tabIndex === tabsRight.length - 1}
             isBeforeSelected={tabIndex + tabsLeft.length === index - 1}
+            isLast={tabIndex === tabsRight.length - 1}
             isSelected={tabIndex + tabsLeft.length === index}
             key={tabIndex + tabsLeft.length}
             onClick={() => onChange(tabIndex + tabsLeft.length)}

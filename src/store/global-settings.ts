@@ -5,11 +5,11 @@ import { createLocalStore } from "../utils/local-store";
 export const globalSettingsSchema = z.object({
   askForConfirmationBeforeDeletingHack: z.boolean().default(true),
   askForConfirmationBeforeRemovingGame: z.boolean().default(true),
-  openHackFolderAfterDownload: z.boolean().default(false),
-  keepSearchWindowOnTop: z.boolean().default(true),
   cookie: z.string().default(""),
-  emulatorPath: z.string().default(""),
   emulatorArgs: z.string().default("%1"),
+  emulatorPath: z.string().default(""),
+  keepSearchWindowOnTop: z.boolean().default(true),
+  openHackFolderAfterDownload: z.boolean().default(false),
   theme: z.enum(["light", "dark"]).default("light"),
 });
 
@@ -113,11 +113,11 @@ export const useGlobalSettings = (): [
     {
       setAskForConfirmationBeforeDeletingHack,
       setAskForConfirmationBeforeRemovingGame,
-      setOpenHackFolderAfterDownload,
-      setKeepSearchWindowOnTop,
       setCookie,
-      setEmulatorPath,
       setEmulatorArgs,
+      setEmulatorPath,
+      setKeepSearchWindowOnTop,
+      setOpenHackFolderAfterDownload,
       setTheme,
     },
   ];

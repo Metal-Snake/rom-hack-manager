@@ -74,11 +74,11 @@ function SectionHackDownload({ gameId }: SectionHackDownloadProps) {
 
   const downloadArgs = useMemo(
     () => ({
+      cookie: globalSettings.cookie,
       gameDirectory: game.directory,
       gameOriginalCopy: game.originalCopy,
-      hackName: hackName.value,
       hackDownloadUrl: hackDownloadUrl.value,
-      cookie: globalSettings.cookie,
+      hackName: hackName.value,
       openHackFolderAfterDownload: globalSettings.openHackFolderAfterDownload,
     }),
     [
@@ -119,12 +119,12 @@ function SectionHackDownload({ gameId }: SectionHackDownloadProps) {
     new WebviewWindow(`search-${gameId}`, {
       alwaysOnTop: globalSettings.keepSearchWindowOnTop,
       fullscreen: false,
+      height: 600,
       resizable: true,
       title: `Search (${game.name})`,
-      width: 550,
-      height: 600,
       url: "src/windows/search/Search.html",
       useHttpsScheme: true,
+      width: 550,
     });
   }, [game.name, gameId, globalSettings.keepSearchWindowOnTop]);
 
@@ -168,7 +168,7 @@ function SectionHackDownload({ gameId }: SectionHackDownloadProps) {
             text="Download"
           />
         </Flex>
-        {error && <Alert status="error" description={error} />}
+        {error && <Alert description={error} status="error" />}
       </Flex>
     </Section>
   );

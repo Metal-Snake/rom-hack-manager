@@ -40,7 +40,7 @@ function Select<Option extends string>({
   );
 
   return (
-    <Flex position="relative" flex={isFullWidth ? 1 : undefined}>
+    <Flex flex={isFullWidth ? 1 : undefined} position="relative">
       {placeholder && value.length > 0 && (
         <Placeholder placeholder={placeholder} />
       )}
@@ -52,9 +52,8 @@ function Select<Option extends string>({
         disabled={isDisabled}
         multiple={isMultiple}
         onValueChange={(e) => {
-          isMultiple
-            ? onChange(e.value as Option[])
-            : onChange(e.value[0] as Option);
+          if (isMultiple) onChange(e.value as Option[]);
+          else onChange(e.value[0] as Option);
         }}
         outlineColor="blue.focusRing"
         size="sm"

@@ -59,14 +59,14 @@ function PanelGlobalSettings() {
             <PathBrowser
               mode="file"
               onChange={globalSettingsMethods.setEmulatorPath}
-              value={globalSettings.emulatorPath}
               placeholder="Emulator path"
+              value={globalSettings.emulatorPath}
             />
             <TextEditor
-              value={globalSettings.emulatorArgs}
+              isDisabled={!globalSettings.emulatorPath.trim()}
               onChange={globalSettingsMethods.setEmulatorArgs}
               placeholder="Command Line Arguments"
-              isDisabled={!globalSettings.emulatorPath.trim()}
+              value={globalSettings.emulatorArgs}
             />
           </Flex>
         </Flex>
@@ -86,8 +86,8 @@ function PanelGlobalSettings() {
             your browser into the field down below.
           </Text>
           <TextEditor
-            placeholder="Cookie"
             onChange={globalSettingsMethods.setCookie}
+            placeholder="Cookie"
             value={globalSettings.cookie}
           />
         </Flex>

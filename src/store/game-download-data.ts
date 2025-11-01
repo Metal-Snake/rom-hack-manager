@@ -43,5 +43,5 @@ export const useGameDownloadData = (
     [setGameDownloadData]
   );
 
-  return [gameDownloadData, { setName, setDownloadUrl }];
+  return [gameDownloadData, { setDownloadUrl, setName }];
 };
