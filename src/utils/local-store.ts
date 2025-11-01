@@ -9,8 +9,6 @@ export function createLocalStore<T>(
 ): Store<T> {
   const { notify, subscribe, unsubscribe } = createObservable<T>();
 
-  let store = defaultValue;
-
   function get(): T {
     try {
       const stringOrNull = localStorage.getItem(storeId);
@@ -24,7 +22,9 @@ export function createLocalStore<T>(
   }
 
   function set(valueOrAction: T | StoreAction<T>): T {
-    store = isStoreAction(valueOrAction) ? valueOrAction(store) : valueOrAction;
+    const store = isStoreAction(valueOrAction)
+      ? valueOrAction(get())
+      : valueOrAction;
     localStorage.setItem(storeId, JSON.stringify(store));
     notify(store);
     return store;
