@@ -46,10 +46,13 @@ function SectionHackDownload({ gameId }: SectionHackDownloadProps) {
     useGameDownloadData(gameId);
 
   const hackName = useFormValue(gameId, gameDownloadData.name, {
+    isDirty: gameDownloadData.name !== "",
     onChange: gameDownloadDataMethods.setName,
     validate: validateName,
   });
+
   const hackDownloadUrl = useFormValue(gameId, gameDownloadData.downloadUrl, {
+    isDirty: gameDownloadData.downloadUrl !== "",
     onChange: gameDownloadDataMethods.setDownloadUrl,
     validate: validateURL,
   });

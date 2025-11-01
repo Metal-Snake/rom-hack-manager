@@ -28,12 +28,14 @@ export function createMemorySetStore<T>(defaultValue: T): SetStore<T> {
   function use(id: string): [T, StoreUpdater<T>] {
     const [value, setValue] = useState(() => get(id));
     useLayoutEffect(() => subscribe(id, setValue), [id]);
+    useLayoutEffect(() => setValue(get(id)), [id]);
     return [value, useCallback((...args) => set(id)(...args), [id])];
   }
 
   function useValue(id: string): T {
     const [value, setValue] = useState(() => get(id));
     useLayoutEffect(() => subscribe(id, setValue), [id]);
+    useLayoutEffect(() => setValue(get(id)), [id]);
     return value;
   }
 
