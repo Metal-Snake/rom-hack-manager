@@ -4,6 +4,7 @@ import { useMemo } from "react";
 type Tab = {
   body: React.ReactNode;
   header: React.ReactNode;
+  id: string;
 };
 
 const BORDER_COLOR_SELECTED = "border.emphasized";
@@ -81,7 +82,7 @@ function Tabs({ index, onChange, tabsLeft, tabsRight }: TabsProps) {
             }
             isLast={tabIndex === tabsLeft.length - 1 && tabsRight.length === 0}
             isSelected={tabIndex === index}
-            key={tabIndex}
+            key={tab.id}
             onClick={() => onChange(tabIndex)}
           >
             {tab.header}
@@ -107,7 +108,7 @@ function Tabs({ index, onChange, tabsLeft, tabsRight }: TabsProps) {
             isBeforeSelected={tabIndex + tabsLeft.length === index - 1}
             isLast={tabIndex === tabsRight.length - 1}
             isSelected={tabIndex + tabsLeft.length === index}
-            key={tabIndex + tabsLeft.length}
+            key={tab.id}
             onClick={() => onChange(tabIndex + tabsLeft.length)}
           >
             {tab.header}

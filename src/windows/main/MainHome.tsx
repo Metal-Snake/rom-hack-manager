@@ -56,10 +56,12 @@ function MainHome() {
         header: (
           <GameTab gameId={gameId} onRemoveGame={() => openOrRemove(gameId)} />
         ),
+        id: gameId,
       })),
       {
         body: <PanelGameCreation onCreateGame={createGame} />,
         header: <Icon as={PlusIcon} size="sm" />,
+        id: "app/game_creation",
       },
     ],
     [createGame, gameIds, openOrRemove]
@@ -70,10 +72,12 @@ function MainHome() {
       {
         body: <PanelGlobalSettings />,
         header: <Icon as={SettingsIcon} size="sm" />,
+        id: "app/settings",
       },
       {
         body: <PanelAbout />,
         header: <Icon as={InfoIcon} size="sm" />,
+        id: "app/info",
       },
     ],
     []
