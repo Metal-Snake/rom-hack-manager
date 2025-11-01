@@ -1,6 +1,6 @@
 import { Flex, Icon, Text } from "@chakra-ui/react";
-import { UnlistenFn } from "@tauri-apps/api/event";
 import { invoke } from "@tauri-apps/api/core";
+import { UnlistenFn } from "@tauri-apps/api/event";
 import { join } from "@tauri-apps/api/path";
 import { readDir, remove, watch } from "@tauri-apps/plugin-fs";
 import { CirclePlayIcon, FolderIcon, TrashIcon } from "lucide-react";

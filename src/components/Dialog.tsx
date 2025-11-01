@@ -1,6 +1,6 @@
 import { Dialog as ChakraDialog, Portal } from "@chakra-ui/react";
-import Button from "./Button";
 import { useRef } from "react";
+import Button from "./Button";
 
 export type DialogProps = {
   description: string;

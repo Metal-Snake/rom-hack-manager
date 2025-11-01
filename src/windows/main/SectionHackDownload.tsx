@@ -13,13 +13,13 @@ import useTauriInvoke from "../../hooks/useTauriInvoke";
 import { useGame } from "../../store/game";
 import { useGameDownloadData } from "../../store/game-download-data";
 import { useGlobalSettings } from "../../store/global-settings";
+import { SelectHackPayloadSchema } from "../events";
 import {
   validateDirectoryPath,
   validateFilePath,
   validateName,
   validateURL,
 } from "../validation";
-import { SelectHackPayloadSchema } from "../events";
 
 type SectionHackDownloadProps = {
   gameId: string;

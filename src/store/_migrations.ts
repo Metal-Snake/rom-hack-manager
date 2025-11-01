@@ -1,7 +1,7 @@
 import z, { ZodType } from "zod";
+import { gameSchema } from "./game";
 import { globalSettingsSchema } from "./global-settings";
 import { searchResultsOptionsSchema } from "./search-results-options";
-import { gameSchema } from "./game";
 
 export function migrate() {
   try {

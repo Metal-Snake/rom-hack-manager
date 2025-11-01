@@ -1,7 +1,7 @@
 import {
   Flex,
-  Select as ChakraSelect,
   Portal,
+  Select as ChakraSelect,
   createListCollection,
 } from "@chakra-ui/react";
 import { useMemo } from "react";

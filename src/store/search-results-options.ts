@@ -1,5 +1,5 @@
-import z from "zod";
 import { useCallback } from "react";
+import z from "zod";
 import { createLocalStore } from "../utils/local-store";
 
 export const searchResultsOptionsSchema = z.object({

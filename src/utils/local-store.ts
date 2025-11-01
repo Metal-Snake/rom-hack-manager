@@ -1,6 +1,6 @@
 import { useLayoutEffect, useState } from "react";
 import { createObservable } from "./observable";
-import { isStoreAction, Store, StoreAction, StoreUpdater } from "./store";
+import { Store, StoreAction, StoreUpdater, isStoreAction } from "./store";
 
 export function createLocalStore<T>(
   storeId: string,
