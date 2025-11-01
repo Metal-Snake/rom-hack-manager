@@ -37,19 +37,33 @@ function PanelGameCreation({ onCreateGame }: PanelGameCreationProps) {
   const isValid =
     gameName.isValid && gameDirectory.isValid && gameOriginalCopy.isValid;
 
+  const { setDirectory, setName, setOriginalCopy } = gameCreationDataMethods;
+  const gameDirectoryValue = gameDirectory.value;
+  const gameNameValue = gameName.value;
+  const gameOriginalCopyValue = gameOriginalCopy.value;
+
   const handleCreateGame = useCallback(() => {
     if (!isValid) return;
 
-    gameCreationDataMethods.setDirectory("");
-    gameCreationDataMethods.setName("");
-    gameCreationDataMethods.setOriginalCopy("");
+    setDirectory("");
+    setName("");
+    setOriginalCopy("");
 
     onCreateGame({
-      directory: gameDirectory.value,
-      name: gameName.value,
-      originalCopy: gameOriginalCopy.value,
+      directory: gameDirectoryValue,
+      name: gameNameValue,
+      originalCopy: gameOriginalCopyValue,
     });
-  }, [gameDirectory.value, gameName.value, gameOriginalCopy.value, isValid]);
+  }, [
+    gameDirectoryValue,
+    gameNameValue,
+    gameOriginalCopyValue,
+    isValid,
+    onCreateGame,
+    setDirectory,
+    setName,
+    setOriginalCopy,
+  ]);
 
   return (
     <Panel>

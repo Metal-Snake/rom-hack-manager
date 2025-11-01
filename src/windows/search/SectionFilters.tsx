@@ -85,11 +85,12 @@ function SectionFilters({ isSearching, onSearchHacks }: SectionFiltersProps) {
       types,
     });
   }, [
+    onSearchHacks,
     author,
     cookie,
     description,
-    game,
     difficulties,
+    game,
     moderated,
     name,
     orderDirection,

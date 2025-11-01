@@ -28,7 +28,7 @@ function PathBrowser({
     });
 
     if (typeof path === "string") onChange(path);
-  }, [value]);
+  }, [mode, onChange, value]);
 
   return (
     <Flex gap={1}>

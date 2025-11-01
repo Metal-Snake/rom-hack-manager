@@ -89,7 +89,6 @@ function SectionResults({ results }: SectionResultsProps) {
       columns.push({ format: formatDownloads, header: "⬇️", width: "7.5em" });
     return columns;
   }, [
-    results,
     options.showAuthorsColumn,
     options.showDifficultyColumn,
     options.showDownloadsColumn,

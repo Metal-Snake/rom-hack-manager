@@ -25,13 +25,15 @@ const useFormValue = <T>(
   const [error, setError] = useState<string | undefined>(undefined);
   const [isPristine, setIsPristine] = useState(!options.isDirty);
 
+  const { onBlur, onChange, validate } = options;
+
   const handleValidate = useCallback(
     (newValue: T) => {
-      if (!options.validate) {
+      if (!validate) {
         setError(undefined);
         return;
       }
-      const errorOrPromise = options.validate(newValue);
+      const errorOrPromise = validate(newValue);
       if (errorOrPromise === undefined) {
         setError(undefined);
         return;
@@ -45,22 +47,22 @@ const useFormValue = <T>(
         setError(newError);
       });
     },
-    [options.validate]
+    [validate]
   );
 
   const handleChangeValue = useCallback(
     (newValue: T) => {
       setValue(newValue);
-      options.onChange?.(newValue);
+      onChange?.(newValue);
       handleValidate(newValue);
     },
-    [handleValidate, options.onChange]
+    [handleValidate, onChange]
   );
 
   const handleBlur = useCallback(() => {
     setIsPristine(false);
-    options.onBlur?.();
-  }, [options.onBlur]);
+    onBlur?.();
+  }, [onBlur]);
 
   useEffect(() => {
     setValue(defaultValue);
@@ -68,7 +70,7 @@ const useFormValue = <T>(
 
   useEffect(() => {
     handleValidate(value);
-  }, [handleValidate]);
+  }, [handleValidate]); // eslint-disable-line react-hooks/exhaustive-deps
 
   return {
     error,

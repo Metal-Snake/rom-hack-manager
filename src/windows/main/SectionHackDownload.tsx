@@ -54,6 +54,9 @@ function SectionHackDownload({ gameId }: SectionHackDownloadProps) {
     validate: validateURL,
   });
 
+  const handleHackNameChangeValue = hackName.handleChangeValue;
+  const handleHackDownloadUrlChangeValue = hackDownloadUrl.handleChangeValue;
+
   useListenEvent(
     "select-hack",
     useCallback(
@@ -61,32 +64,41 @@ function SectionHackDownload({ gameId }: SectionHackDownloadProps) {
         try {
           const payload = SelectHackPayloadSchema.parse(maybePayload);
           if (payload.gameId !== gameId) return;
-          hackName.handleChangeValue(sanitizeHackName(payload.name));
-          hackDownloadUrl.handleChangeValue(payload.downloadUrl);
+          handleHackNameChangeValue(sanitizeHackName(payload.name));
+          handleHackDownloadUrlChangeValue(payload.downloadUrl);
         } catch (e) {
           console.error(e);
           // TODO: Set generic error.
         }
       },
-      [gameId, hackName.handleChangeValue, hackDownloadUrl.handleChangeValue]
+      [gameId, handleHackNameChangeValue, handleHackDownloadUrlChangeValue]
     )
   );
 
+  const globalSettingsCookie = globalSettings.cookie;
+  const globalSettingsOpenHackFolderAfterDownload =
+    globalSettings.openHackFolderAfterDownload;
+  const gameDirectory = game.directory;
+  const gameOriginalCopy = game.originalCopy;
+  const hackDownloadUrlValue = hackDownloadUrl.value;
+  const hackNameValue = hackName.value;
+
   const downloadArgs = useMemo(
     () => ({
-      cookie: globalSettings.cookie,
-      gameDirectory: game.directory,
-      gameOriginalCopy: game.originalCopy,
-      hackDownloadUrl: hackDownloadUrl.value,
-      hackName: hackName.value,
-      openHackFolderAfterDownload: globalSettings.openHackFolderAfterDownload,
+      cookie: globalSettingsCookie,
+      gameDirectory: gameDirectory,
+      gameOriginalCopy: gameOriginalCopy,
+      hackDownloadUrl: hackDownloadUrlValue,
+      hackName: hackNameValue,
+      openHackFolderAfterDownload: globalSettingsOpenHackFolderAfterDownload,
     }),
     [
-      game.directory,
-      game.originalCopy,
-      globalSettings.openHackFolderAfterDownload,
-      hackName.value,
-      hackDownloadUrl.value,
+      globalSettingsCookie,
+      gameDirectory,
+      gameOriginalCopy,
+      hackDownloadUrlValue,
+      hackNameValue,
+      globalSettingsOpenHackFolderAfterDownload,
     ]
   );
 

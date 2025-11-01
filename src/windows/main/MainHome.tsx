@@ -47,15 +47,14 @@ function MainHome() {
     globalSettings.askForConfirmationBeforeRemovingGame
   );
 
+  const { openOrRemove } = gameRemovalDialog;
+
   const tabsLeft = useMemo(
     () => [
       ...gameIds.map((gameId) => ({
         body: <PanelGame gameId={gameId} />,
         header: (
-          <GameTab
-            gameId={gameId}
-            onRemoveGame={() => gameRemovalDialog.openOrRemove(gameId)}
-          />
+          <GameTab gameId={gameId} onRemoveGame={() => openOrRemove(gameId)} />
         ),
       })),
       {
@@ -63,7 +62,7 @@ function MainHome() {
         header: <Icon as={PlusIcon} size="sm" />,
       },
     ],
-    [createGame, gameIds, gameRemovalDialog.openOrRemove]
+    [createGame, gameIds, openOrRemove]
   );
 
   const tabsRight = useMemo(

@@ -32,16 +32,19 @@ export const useGameIds = (): [
         return [...oldGameIds, id];
       });
     },
-    []
+    [setGameIds]
   );
 
-  const remove = useCallback((id: string) => {
-    setGameIds((oldGameIds) => {
-      const newGameIds = oldGameIds.filter((otherId) => otherId !== id);
-      gameStore.remove(id);
-      return newGameIds;
-    });
-  }, []);
+  const remove = useCallback(
+    (id: string) => {
+      setGameIds((oldGameIds) => {
+        const newGameIds = oldGameIds.filter((otherId) => otherId !== id);
+        gameStore.remove(id);
+        return newGameIds;
+      });
+    },
+    [setGameIds]
+  );
 
   return [gameIds, { create, remove }];
 };

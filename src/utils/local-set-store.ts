@@ -42,7 +42,7 @@ export function createLocalSetStore<T>(
   function use(id: string): [T, StoreUpdater<T>] {
     const [value, setValue] = useState(() => get(id));
     useLayoutEffect(() => subscribe(id, setValue), [id]);
-    return [value, useCallback(set(id), [id])];
+    return [value, useCallback((...args) => set(id)(...args), [id])];
   }
 
   function useValue(id: string): T {
@@ -52,7 +52,7 @@ export function createLocalSetStore<T>(
   }
 
   function useSetValue(id: string): StoreUpdater<T> {
-    return useCallback(set(id), [id]);
+    return useCallback((...args) => set(id)(...args), [id]);
   }
 
   return {

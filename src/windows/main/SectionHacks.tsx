@@ -90,6 +90,8 @@ function SectionHacks({ gameId }: SectionHacksProps) {
     globalSettings.askForConfirmationBeforeDeletingHack
   );
 
+  const { openOrRemove } = hackDeletionDialog;
+
   const hacksTableActions = useMemo(
     () => [
       {
@@ -116,10 +118,10 @@ function SectionHacks({ gameId }: SectionHacksProps) {
       {
         icon: <Icon as={TrashIcon} />,
         label: "Delete",
-        onClick: (hack: Hack) => hackDeletionDialog.openOrRemove(hack),
+        onClick: (hack: Hack) => openOrRemove(hack),
       },
     ],
-    [hackDeletionDialog.openOrRemove]
+    [globalSettings.emulatorArgs, globalSettings.emulatorPath, openOrRemove]
   );
 
   useEffect(() => {

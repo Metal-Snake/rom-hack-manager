@@ -36,7 +36,7 @@ function Select<Option extends string>({
 }: SelectProps<Option>) {
   const collection = useMemo(
     () => createListCollection({ items: options }),
-    []
+    [options]
   );
 
   return (
