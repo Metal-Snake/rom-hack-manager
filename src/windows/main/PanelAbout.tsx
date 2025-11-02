@@ -8,7 +8,7 @@ function PanelAbout() {
     <Panel>
       <Section isDefaultExpanded title="ROM Hack Manager">
         <Flex direction="column" fontSize="sm">
-          <Text fontSize="sm">v2.5.0 (2025-09-05)</Text>
+          <Text fontSize="sm">v2.5.1 (2025-11-02)</Text>
           <Flex>
             <Text>Created by&nbsp;</Text>
             <Website href="https://zuccha.io" label="zuccha" />
