@@ -19,6 +19,7 @@ import {
   validateFilePath,
   validateName,
   validateHackDownloadSource,
+  validateHackNameOrEmpty,
 } from "../validation";
 
 type SectionHackDownloadProps = {
@@ -48,7 +49,7 @@ function SectionHackDownload({ gameId }: SectionHackDownloadProps) {
   const hackName = useFormValue(gameId, gameDownloadData.name, {
     isDirty: gameDownloadData.name !== "",
     onChange: gameDownloadDataMethods.setName,
-    validate: validateName,
+    validate: validateHackNameOrEmpty,
   });
 
   const hackDownloadUrl = useFormValue(gameId, gameDownloadData.downloadUrl, {
