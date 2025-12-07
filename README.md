@@ -114,8 +114,8 @@ You can look for _Super Mario World_ and _Yoshi Island_ hacks.
 
 The tool will download the zip file from the given URL or use the specified
 local zip file, extract it inside a folder of the chosen or derived name
-(`<game_folder>/<hack_name>`), and it will patch the first `.bps` file it
-finds.
+(`<game_folder>/<hack_name>`), and it will patch the first `.bps` or `.ips`
+file it finds.
 
 If the URL doesn't download a zip, or if the zip doesn't contain a `.bps` file,
 the operation will fail.
