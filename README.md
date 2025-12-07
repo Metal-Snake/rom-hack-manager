@@ -133,11 +133,13 @@ The tool provides the following operations on hacks
 
 - **Play:** The tool opens the `.sfc` file of the hack with its default
   application (it should be an emulator). You can specify the default app on you
-  operating system. If the hack has more than one `.sfc` file, the tool will
-  play the one that you see in the table (you cannot control which one).
-- **Open folder:** Open the folder containing the hack.
-- **Delete:** Delete the hack. This deletes the folder of the hack and all its
-  contents.
+  operating system. If the hack has more than one `.sfc` file, each of them will
+  appear as a separate row in the list, and **Play** will open the selected
+  `.sfc` file.
+- **Open folder:** Open the folder containing the hack. This action is shown
+  once per hack.
+- **Delete:** Delete the selected `.sfc` file. If there are no `.sfc` files left
+  in the folder, the tool will delete the folder and all its remaining contents.
 
 | <img src="./docs/images/play_hack.gif" alt="Hack list" width="400px" max-width="100%" /> |
 | :--------------------------------------------------------------------------------------: |
