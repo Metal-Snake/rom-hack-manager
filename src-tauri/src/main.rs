@@ -5,6 +5,13 @@ use tauri::Manager;
 use std::path::{Path, PathBuf};
 use reqwest::header;
 
+fn decode_url_component(component: &str) -> String {
+  let replaced = component.replace('+', " ");
+  urlencoding::decode(&replaced)
+    .map(|cow| cow.into_owned())
+    .unwrap_or_else(|_| replaced)
+}
+
 fn expand_tilde(path: &str) -> String {
   if let Some(rest) = path.strip_prefix("~") {
     if let Ok(home) = std::env::var("HOME") {
@@ -170,6 +177,7 @@ async fn download_hack(
     Err(e) => return Err(e),
     _ => (),
   }
+
   // Build paths
   let expanded_game_directory = expand_tilde(game_directory);
   let expanded_game_original_copy = expand_tilde(game_original_copy);
@@ -180,7 +188,8 @@ async fn download_hack(
     if is_remote {
       let without_query = hack_download_url.split('?').next().unwrap_or(hack_download_url);
       let last_segment = without_query.rsplit('/').next().unwrap_or("hack");
-      let stem = Path::new(last_segment)
+      let decoded_segment = decode_url_component(last_segment);
+      let stem = Path::new(&decoded_segment)
         .file_stem()
         .and_then(|s| s.to_str())
         .unwrap_or("hack");
@@ -196,10 +205,11 @@ async fn download_hack(
         .file_stem()
         .and_then(|s| s.to_str())
         .unwrap_or("hack");
-      if stem.is_empty() {
+      let decoded_stem = decode_url_component(stem);
+      if decoded_stem.is_empty() {
         "hack".to_string()
       } else {
-        stem.to_string()
+        decoded_stem
       }
     }
   } else {
