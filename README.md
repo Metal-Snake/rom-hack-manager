@@ -91,8 +91,10 @@ itself (under the _Settings_ section, collapsed by default).
 
 To download (and patch) a hack, you have to specify:
 
-- _Name_: A name of your choosing (usually the name of the hack). This will be
-  the name of the folder created by the tool inside the game folder.
+- _Name_ (optional): A name of your choosing (usually the name of the hack).
+  This will be the name of the folder created by the tool inside the game
+  folder. If left empty, the tool will use the zip file name (without
+  extension).
 - _Download URL or local zip path_: Either a URL for downloading the zip file
   (for example, from SMWCentral) or a path to a local .zip file. On macOS and
   Linux you can use `~` as a shortcut for your home directory (for example:
@@ -111,7 +113,7 @@ You can also look for a game present on SMWCentral directly from within the tool
 You can look for _Super Mario World_ and _Yoshi Island_ hacks.
 
 The tool will download the zip file from the given URL or use the specified
-local zip file, extract it inside a folder of the chosen name
+local zip file, extract it inside a folder of the chosen or derived name
 (`<game_folder>/<hack_name>`), and it will patch the first `.bps` file it
 finds.
 

@@ -173,9 +173,40 @@ async fn download_hack(
   // Build paths
   let expanded_game_directory = expand_tilde(game_directory);
   let expanded_game_original_copy = expand_tilde(game_original_copy);
-  let hack_directory_path = PathBuf::from(&expanded_game_directory).join(hack_name);
 
   let is_remote = hack_download_url.starts_with("http://") || hack_download_url.starts_with("https://");
+
+  let effective_hack_name = if hack_name.trim().is_empty() {
+    if is_remote {
+      let without_query = hack_download_url.split('?').next().unwrap_or(hack_download_url);
+      let last_segment = without_query.rsplit('/').next().unwrap_or("hack");
+      let stem = Path::new(last_segment)
+        .file_stem()
+        .and_then(|s| s.to_str())
+        .unwrap_or("hack");
+      if stem.is_empty() {
+        "hack".to_string()
+      } else {
+        stem.to_string()
+      }
+    } else {
+      let expanded_hack_download_url = expand_tilde(hack_download_url);
+      let local_path = Path::new(&expanded_hack_download_url);
+      let stem = local_path
+        .file_stem()
+        .and_then(|s| s.to_str())
+        .unwrap_or("hack");
+      if stem.is_empty() {
+        "hack".to_string()
+      } else {
+        stem.to_string()
+      }
+    }
+  } else {
+    hack_name.to_string()
+  };
+
+  let hack_directory_path = PathBuf::from(&expanded_game_directory).join(&effective_hack_name);
 
   if is_remote {
     // Validate URL

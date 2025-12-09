@@ -49,3 +49,13 @@ export const validateHackDownloadSource = async (
 
   return validateFilePath(trimmed);
 };
+
+export const validateHackNameOrEmpty = async (
+  name: string
+): Promise<string | undefined> => {
+  if (name.trim() === "") {
+    return undefined;
+  }
+
+  return validateName(name);
+};
