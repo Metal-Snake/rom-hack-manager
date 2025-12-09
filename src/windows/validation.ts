@@ -33,3 +33,19 @@ export const validateURL = async (url: string): Promise<string | undefined> => {
     .then(() => undefined)
     .catch((e) => e);
 };
+
+export const validateHackDownloadSource = async (
+  value: string
+): Promise<string | undefined> => {
+  const trimmed = value.trim();
+
+  if (trimmed === "") {
+    return "Value cannot be empty";
+  }
+
+  if (trimmed.startsWith("http://") || trimmed.startsWith("https://")) {
+    return validateURL(trimmed);
+  }
+
+  return validateFilePath(trimmed);
+};
