@@ -16,6 +16,7 @@ type RowAction<T> = {
 
 export type TableProps<T> = {
   actions?: RowAction<T>[];
+  actionColumnWidth?: number | string;
   caption?: string;
   columns: Column<T>[];
   data: T[];
@@ -26,6 +27,7 @@ export type TableProps<T> = {
 
 function Table<T>({
   actions,
+  actionColumnWidth = 110,
   caption,
   columns,
   data,
@@ -52,7 +54,9 @@ function Table<T>({
               <ChakraTable.ColumnHeader
                 bgColor="bg.muted"
                 borderWidth={0}
-                w={110}
+                maxW={actionColumnWidth}
+                minW={actionColumnWidth}
+                w={actionColumnWidth}
               />
             )}
           </ChakraTable.Row>
@@ -81,7 +85,12 @@ function Table<T>({
                   </ChakraTable.Cell>
                 ))}
                 {!!rowActions && rowActions.length > 0 && (
-                  <ChakraTable.Cell borderWidth={0}>
+                  <ChakraTable.Cell
+                    borderWidth={0}
+                    maxW={actionColumnWidth}
+                    minW={actionColumnWidth}
+                    w={actionColumnWidth}
+                  >
                     <Flex className="action" gap={1} justifyContent="flex-end">
                       {rowActions.map((action) => (
                         <IconButton
@@ -89,7 +98,10 @@ function Table<T>({
                           isDisabled={action.isDisabled}
                           key={action.label}
                           label={action.label}
-                          onClick={() => action.onClick(row)}
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            action.onClick(row);
+                          }}
                         />
                       ))}
                     </Flex>
